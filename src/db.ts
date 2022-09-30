@@ -1,15 +1,17 @@
 import * as mysql from 'mysql2'
 import { Kysely, MysqlDialect, Generated } from 'kysely'
-import { DB_PWD } from './conf'
+import { readFromEnv } from './utils'
 
-export function getDb() {
+export type Db = Kysely<NosDeputesDatabase>
+
+export function getDb(): Db {
   console.log('Starting DB connection pool')
   return new Kysely<NosDeputesDatabase>({
     dialect: new MysqlDialect({
       pool: mysql.createPool({
         host: 'localhost',
         user: 'manu',
-        password: DB_PWD,
+        password: readFromEnv('DB_PWD'),
         database: 'nosdeputes',
       }),
     }),
