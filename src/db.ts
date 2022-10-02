@@ -28,8 +28,8 @@ interface ParlementaireTable {
   nom_de_famille: string
   sexe: 'H' | 'F'
   date_naissance: Date
-  num_circo: Date
-  nom_circo: Date
+  num_circo: number
+  nom_circo: string
   sites_web: 'string' | null
   debut_mandat: Date
   fin_mandat: Date | null
