@@ -14,11 +14,11 @@ function startServer() {
   })
 
   app.get('/v0.1/parlementaire', async (req: Request, res: Response) => {
-    const parlementaires = await db
-      .selectFrom('parlementaire')
-      .selectAll()
-      .execute()
-    res.json(parlementaires)
+    res.json(await db.selectFrom('parlementaire').selectAll().execute())
+  })
+
+  app.get('/v0.1/organisme', async (req: Request, res: Response) => {
+    res.json(await db.selectFrom('organisme').selectAll().execute())
   })
 
   app.listen(port, () => {

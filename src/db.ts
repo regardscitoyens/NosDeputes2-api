@@ -20,6 +20,7 @@ export function getDb(): Db {
 
 interface NosDeputesDatabase {
   parlementaire: ParlementaireTable
+  organisme: OrganismeTable
 }
 
 interface ParlementaireTable {
@@ -46,6 +47,15 @@ interface ParlementaireTable {
   top: string
   villes: string | null
   url_ancien_cpc: string | null
+  created_at: Date
+  updated_at: Date
+  slug: string
+}
+
+interface OrganismeTable {
+  id: Generated<number>
+  nom: string
+  type: string
   created_at: Date
   updated_at: Date
   slug: string
