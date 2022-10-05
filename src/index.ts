@@ -17,8 +17,49 @@ function startServer() {
     res.json(await db.selectFrom('parlementaire').selectAll().execute())
   })
 
+  app.get('/v0.1/parlementaire/:slug', async (req: Request, res: Response) => {
+    const slug = req.params.slug
+    res.json(
+      await db
+        .selectFrom('parlementaire')
+        .where('slug', '=', slug)
+        .selectAll()
+        .execute(),
+    )
+  })
+
+  app.get(
+    '/v0.1/parlementaire/:slug/organisme',
+    async (req: Request, res: Response) => {
+      const slug = req.params.slug
+      const { id: deputeId } = await db
+        .selectFrom('parlementaire')
+        .select('id')
+        .where('slug', '=', slug)
+        .executeTakeFirstOrThrow()
+      res.json(
+        await db
+          .selectFrom('parlementaire_organisme')
+          .where('parlementaire_id', '=', deputeId)
+          .selectAll()
+          .execute(),
+      )
+    },
+  )
+
   app.get('/v0.1/organisme', async (req: Request, res: Response) => {
     res.json(await db.selectFrom('organisme').selectAll().execute())
+  })
+
+  app.get('/v0.1/organisme/:id', async (req: Request, res: Response) => {
+    const id = parseInt(req.params.id, 10)
+    res.json(
+      await db
+        .selectFrom('organisme')
+        .where('id', '=', id)
+        .selectAll()
+        .execute(),
+    )
   })
 
   app.listen(port, () => {

@@ -21,6 +21,7 @@ export function getDb(): Db {
 interface NosDeputesDatabase {
   parlementaire: ParlementaireTable
   organisme: OrganismeTable
+  parlementaire_organisme: ParlementaireOrganismeTable
 }
 
 interface ParlementaireTable {
@@ -59,4 +60,17 @@ interface OrganismeTable {
   created_at: Date
   updated_at: Date
   slug: string
+}
+
+interface ParlementaireOrganismeTable {
+  id: Generated<number>
+  organisme_id: number
+  parlementaire_id: number
+  parlementaire_groupe_acronyme: string
+  fonction: string
+  importance: number
+  debut_fonction: Date
+  fin_fonction: Date | null
+  created_at: Date
+  updated_at: Date
 }
