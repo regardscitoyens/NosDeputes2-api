@@ -1,0 +1,48 @@
+version: "3.8"
+
+services:
+  api:
+    image: postgrest/postgrest
+    ports:
+      - "4001:3000"
+    environment:
+      PGRST_DB_URI: postgres://nosdeputes:postgre@db/nosdeputes
+      PGRST_OPENAPI_SERVER_PROXY_URI: http://localhost:4001
+      PGRST_DB_ANON_ROLE: nosdeputes
+    depends_on:
+      - db
+    restart: always
+
+  db:
+    image: postgres:alpine
+    environment:
+      POSTGRES_USER: nosdeputes
+      POSTGRES_PASSWORD: postgre
+      POSTGRES_DB: nosdeputes
+    ports:
+      - 4002:5432
+    volumes:
+      - db:/var/lib/postgresql/data
+    restart: always
+
+  adminer:
+    image: adminer
+    restart: always
+    environment:
+      ADMINER_DESIGN: hever
+    ports:
+      - 4003:8080
+    depends_on:
+      - db
+  
+  swagger:
+    image: swaggerapi/swagger-ui
+    ports:
+      - "4004:8080"
+    expose:
+      - "8080"
+    environment:
+      URL: http://localhost:4001/
+
+volumes:
+  db:
