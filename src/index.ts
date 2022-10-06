@@ -24,7 +24,7 @@ function startServer() {
         .selectFrom('parlementaire')
         .where('slug', '=', slug)
         .selectAll()
-        .execute(),
+        .executeTakeFirstOrThrow(),
     )
   })
 
@@ -58,7 +58,7 @@ function startServer() {
         .selectFrom('organisme')
         .where('id', '=', id)
         .selectAll()
-        .execute(),
+        .executeTakeFirstOrThrow(),
     )
   })
 
