@@ -69,6 +69,7 @@ pour les details. Le XML peut aussi etre activé dans le future.
  3. accédez a http://localhost:4003/, vous devriez tomber sur la page de connexion de Adminer. Remplissez le formulaire; 
 	  - **Systeme:** PostgreSQL
 	  - **Server:** db
+	  - **User:** nosdeputes
 	  - **Password:** postgre
 	  - **Database:** nosdeputes
  4. Un fois connecte accédez a la page import (http://localhost:4003/?pgsql=db&username=nosdeputes&db=nosdeputes&ns=public&import=). Cliquez sur `Choose files` et importez le fichier `postgre_nosdeputes_2022-10-06.gz` qui se trouve dans le dossier data du repos.  
