@@ -6,9 +6,9 @@ services:
     ports:
       - "4001:3000"
     environment:
-      PGRST_DB_URI: postgres://nosdeputes:postgre@db/nosdeputes
+      PGRST_DB_URI: postgres://authenticator:F6SAQ48N56NV4S5@db/nosdeputes
       PGRST_OPENAPI_SERVER_PROXY_URI: http://localhost:4001
-      PGRST_DB_ANON_ROLE: nosdeputes
+      PGRST_DB_ANON_ROLE: anonyme
     depends_on:
       - db
     restart: always
