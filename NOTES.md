@@ -39,6 +39,28 @@ variable_globale : variables de configurations ou stockage (tops, ...)
 
 schema https://github.com/regardscitoyens/nosdeputes.fr/blob/master/doc/data_model.md
 
+# mes notes sur le schema
+
+- parlementaire <--- parlementaire_organisme --> organisme
+
+- intervention
+  - --> seance
+  - --> section
+  - --> parlementaire OU personnalite
+- section (Un sujet de discussion, notion floue)
+
+  - --> section parente (= "dossier")
+  - --> texteloi (vie le 'id_dossier_an')
+
+- scrutin
+
+  - --> texteloi
+  - --> amendement
+  - --> seance
+  - (toutes ces ids sont souvent NULL. C'est cassé ?)
+
+- parlementaire <-- parlementaire_scrutin (= vote) --> scrutin
+
 # manage local mariadb
 
     brew info mariadb
