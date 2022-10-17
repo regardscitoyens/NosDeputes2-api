@@ -54,3 +54,28 @@ schema https://github.com/regardscitoyens/nosdeputes.fr/blob/master/doc/data_mod
 Tips for first install
 https://stackoverflow.com/questions/50453078/unable-to-connect-to-mariadb-using-dbeaver
 user is manu/password
+
+# comment récupérer le dernier dump en local
+
+https://data.regardscitoyens.org/nosdeputes.fr/
+
+prendre "nosdeputes.fr_donnees.sql.gz"
+Décompresser l'archive
+
+    sudo mysql -u root
+
+    SHOW DATABASES;
+    DROP DATABASE nosdeputes;
+    CREATE DATABASE nosdeputes;
+
+    (exist mysql prompt)
+
+    (check than you can connect with manu/password)
+
+    mysql -u manu -p nosdeputes
+    SHOW TABLES;
+
+    (exit again)
+    (import the dump)
+
+    mysql -u manu -p nosdeputes < ~/Desktop/nosdeputes.fr_donnees.sql
