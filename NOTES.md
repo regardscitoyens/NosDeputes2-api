@@ -41,25 +41,41 @@ schema https://github.com/regardscitoyens/nosdeputes.fr/blob/master/doc/data_mod
 
 # mes notes sur le schema
 
-- parlementaire <--- parlementaire_organisme --> organisme
+    - parlementaire <--- parlementaire_organisme --> organisme
 
-- intervention
-  - --> seance
-  - --> section
-  - --> parlementaire OU personnalite
-- section (Un sujet de discussion, notion floue)
+    - intervention
+      - --> seance
+      - --> section
+      - --> parlementaire OU personnalite
 
-  - --> section parente (= "dossier")
-  - --> texteloi (vie le 'id_dossier_an')
+    - section (Un sujet de discussion, notion floue)
+      - --> section parente (= "dossier")
+      - --> texteloi (via le 'id_dossier_an')
 
-- scrutin
+    - scrutin
+      - --> texteloi
+      - --> amendement
+      - --> seance
+      - (toutes ces ids sont souvent NULL. C'est cassé ?)
+      - <-- parlementaire_scrutin (= le vote oui/non) --> parlementaire
 
-  - --> texteloi
-  - --> amendement
-  - --> seance
-  - (toutes ces ids sont souvent NULL. C'est cassé ?)
+    - texteloi <-- parlementaire_texteloi (= auteur/cosignataire/rapporteur/etc.) --> parlementaire
 
-- parlementaire <-- parlementaire_scrutin (= vote) --> scrutin
+    - amendement
+      - --> texteloi
+      - --> amendement parent (?)
+      - --> parlementaire (auteur)
+      - <-- parlementaire_amendement (= signataires) --> parlementaire
+
+    - presence
+      - --> parlementaire
+      - --> seance
+      - <-- preuve_presence (plusieurs éléments de preuve (interventions, scrutins,etc.) ont pu permettre de prouver la présence du député à cette séance)
+
+    - article ??? pas rempli dans le dump actuel
+
+    - question_ecrite
+      - --> parlementaire
 
 # manage local mariadb
 
