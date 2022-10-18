@@ -117,3 +117,8 @@ Décompresser l'archive
     (import the dump)
 
     mysql -u manu -p nosdeputes < ~/Desktop/nosdeputes.fr_donnees.sql
+
+# TODO
+
+il faudra maintenir l'api actuelle (https://github.com/regardscitoyens/nosdeputes.fr/blob/master/doc/api.md)
+
